@@ -1,1 +1,33 @@
-language: bash
+language: ruby
+
+services:
+  - docker
+
+env:
+  global:
+    - SAVE_DIR=$HOME/docker-images
+    - TAG="${TRAVIS_COMMIT}"
+  matrix:
+    - BUILD_CONTEXT=base
+
+cache:
+  directories:
+    - "${SAVE_DIR}"
+
+before_install:
+  - gem install bundler
+
+jobs:
+  include:
+    - stage: Build
+      script:
+        - set -e
+        - docker info
+        - bundle exec rake dockerfile:generate
+        - git diff --exit-code
+        - bundle exec rake docker:build
+    - stage: Release
+      if: type != pull_request AND tag IS present
+      script:
+        - set -e
+        - TAG="${TRAVIS_TAG}" echo 'TODO: Do something'

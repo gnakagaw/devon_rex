@@ -1,0 +1,11 @@
+FROM debian:buster-20190708
+
+<%= ERB.new(File.read('base/Dockerfile.env.erb')).result %>
+<%= ERB.new(File.read('base/Dockerfile.prepare.erb')).result %>
+
+# Following instructions should be run by $RUNNER_USER
+USER $RUNNER_USER
+
+<%= ERB.new(File.read('base/Dockerfile.build-ruby.erb')).result %>
+
+WORKDIR /analyzer

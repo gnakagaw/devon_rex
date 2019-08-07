@@ -1,0 +1,24 @@
+FROM debian:buster-20190708
+
+<%= ERB.new(File.read('base/Dockerfile.env.erb')).result %>
+<%= ERB.new(File.read('base/Dockerfile.prepare.erb')).result %>
+
+# Install Java
+ENV JAVA_VERSION 12.0.1
+ENV PATH /usr/local/java/bin:$PATH
+ARG TAR_URL=https://download.java.net/java/GA/jdk${JAVA_VERSION}/69cfe15208a647278a19ef0990eea691/12/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz
+ARG SHA256_URL=https://download.java.net/java/GA/jdk${JAVA_VERSION}/69cfe15208a647278a19ef0990eea691/12/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz.sha256
+RUN curl -fsSLO --compressed $TAR_URL && \
+    curl -fsSL -o sha256.txt --compressed $SHA256_URL && \
+    echo "$(cat sha256.txt) *openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" | sha256sum --check --strict && \
+    mkdir -p /usr/local/java && \
+    tar -xzf "openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" -C /usr/local/java --strip-components=1 && \
+    rm -rf "openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" sha256.txt
+
+# Following instructions should be run by $RUNNER_USER
+USER $RUNNER_USER
+
+<%= ERB.new(File.read('base/Dockerfile.build-ruby.erb')).result %>
+
+WORKDIR /analyzer
+CMD java -version && javac -version

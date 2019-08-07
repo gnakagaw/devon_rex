@@ -2,7 +2,7 @@ require 'erb'
 require 'dotenv/load'
 
 # TODO: Add the rest of contexts
-BUILD_CONTEXTS = %w[base go].freeze
+BUILD_CONTEXTS = %w[base go java].freeze
 
 namespace :dockerfile do
   desc 'Generate Dockerfile from a template'
@@ -53,5 +53,5 @@ def build_context
 end
 
 def tag
-  ENV.fetch('TAG')
+  ENV.fetch('TAG').tap { |value| raise 'Environment variable `TAG` must not be an empty string.' unless value.length > 0 }
 end

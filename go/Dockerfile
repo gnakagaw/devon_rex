@@ -1,25 +1,105 @@
-FROM quay.io/actcat/devon_rex_base:1.3.3
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
+# PLEASE UPDATE Dockerfile.erb INSTEAD OF THIS FILE
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+FROM golang:1.12.7-buster
 
-ENV GO_VERSION 1.8
-ENV GO_DOWNLOAD_SHA256 53ab94104ee3923e228a2cb2116e5e462ad3ebaeea06ff04463479d7f12d27ca
+ENV GLOBAL_RUBY_VERSION 2.5.5
+ENV BUNDLER1_VERSION 1.17.3
+ENV BUNDLER2_VERSION 2.0.2
+ENV RBENV_COMMIT_HASH 4e923221ce57a04ab52bddd638473d566347711f
+ENV RBENV_RUBY_BUILD_COMMIT_HASH 0e9094b3cba673efb7554f6bd523779c8a3c0bc5
+ENV LANG en_US.UTF-8
+ENV LANGUAGE $LANG
+ENV LC_ALL $LANG
+ENV RUNNER_USER analyzer_runner
+ENV RUNNER_USER_HOME /home/$RUNNER_USER
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Install go from binary distributions. https://golang.org/dl/
-RUN cd /tmp \
-  && curl -fsSLO --compressed "https://storage.googleapis.com/golang/go${GO_VERSION}.linux-amd64.tar.gz" \
-  && echo "${GO_DOWNLOAD_SHA256} *go${GO_VERSION}.linux-amd64.tar.gz" | sha256sum --check --strict \
-  && tar -xzf "go${GO_VERSION}.linux-amd64.tar.gz" -C /usr/local \
-  && rm -rf "go${GO_VERSION}.linux-amd64.tar.gz"
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends \
+        autoconf \
+        build-essential \
+        imagemagick \
+        libbz2-dev \
+        libcurl4-openssl-dev \
+        libevent-dev \
+        libffi-dev \
+        libglib2.0-dev \
+        libjpeg-dev \
+        libmagickcore-dev \
+        libmagickwand-dev \
+        libmariadb-dev-compat \
+        libncurses-dev \
+        libpq-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        libssl-dev \
+        libxml2-dev \
+        libxslt-dev \
+        libyaml-dev \
+        wget \
+        zlib1g-dev \
+        software-properties-common \
+        patchutils \
+        curl \
+        procps \
+        locales \
+        tzdata \
+        git \
+        unzip \
+        sudo \
+        ;
 
-RUN add-apt-repository ppa:masterminds/glide \
-  && apt-get update \
-  && apt-get install glide \
-  && rm -rf /var/lib/apt/lists/*
+# Configure locale
+RUN sed -i -e "s/# ${LANGUAGE}/${LANGUAGE}/" /etc/locale.gen && \
+    locale-gen $LANGUAGE && \
+    dpkg-reconfigure --frontend noninteractive locales
 
-ENV GOROOT=/usr/local/go \
-    GOPATH=$RUNNER_USER_HOME/go
-ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin
+# Clean up
+RUN apt-get -qyy autoremove && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt-get -qyy clean
 
-# Edit secure_path to include PATH required by Go
-USER root
-RUN sed -i -e '/secure_path/d' /etc/sudoers && \
-    echo "Defaults secure_path=\"$GEM_HOME/bin:/usr/local/bin:/usr/bin:/bin:$GOROOT/bin:$GOPATH/bin\"" >> /etc/sudoers
+# Create a user
+RUN adduser --system --shell /bin/bash --home $RUNNER_USER_HOME $RUNNER_USER
+
+
+# Install Glide
+# See https://github.com/Masterminds/glide
+RUN curl https://glide.sh/get | sh
+
+# Following instructions should be run by $RUNNER_USER
+USER $RUNNER_USER
+
+RUN test `whoami` = "$RUNNER_USER" && \
+    git clone https://github.com/rbenv/rbenv.git ~/.rbenv && \
+    cd ~/.rbenv && \
+    git checkout $RBENV_COMMIT_HASH && \
+    src/configure && \
+    make -j $(nproc) -C src && \
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile && \
+    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile && \
+    ~/.rbenv/bin/rbenv init || : && \
+    . ~/.bash_profile && \
+    RBENV_ROOT=$(rbenv root) && \
+    mkdir -p ${RBENV_ROOT}/plugins && \
+    git clone https://github.com/rbenv/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build && \
+    cd ${RBENV_ROOT}/plugins/ruby-build && \
+    git checkout $RBENV_RUBY_BUILD_COMMIT_HASH && \
+    rbenv install --verbose $GLOBAL_RUBY_VERSION && \
+    rbenv global $GLOBAL_RUBY_VERSION && \
+    echo 'install: --no-document' >> ~/.gemrc && \
+    echo 'update: --no-document' >> ~/.gemrc
+
+ENV PATH $RUNNER_USER_HOME/.rbenv/versions/$GLOBAL_RUBY_VERSION/bin:$PATH
+
+# NOTE: Install bundler v1 as well as v2 because runner applications need them
+#       in order to parse both versions of Gemfile.lock.
+#       See https://bundler.io/blog/2019/01/03/announcing-bundler-2.html
+RUN gem install bundler --version $BUNDLER1_VERSION && \
+    gem install bundler --version $BUNDLER2_VERSION
+
+
+WORKDIR /analyzer
+CMD go version

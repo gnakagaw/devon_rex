@@ -9,6 +9,7 @@ env:
     - TAG="${TRAVIS_COMMIT}"
   matrix:
     - BUILD_CONTEXT=base
+    - BUILD_CONTEXT=go
 
 cache:
   directories:
@@ -17,15 +18,16 @@ cache:
 before_install:
   - gem install bundler
 
+script:
+  - set -e
+  - docker info
+  - bundle exec rake dockerfile:generate
+  - bundle exec rake dockerfile:verify
+  - bundle exec rake docker:build
+  - bundle exec rake docker:run
+
 jobs:
   include:
-    - stage: Build
-      script:
-        - set -e
-        - docker info
-        - bundle exec rake dockerfile:generate
-        - git diff --exit-code
-        - bundle exec rake docker:build
     - stage: Release
       if: type != pull_request AND tag IS present
       script:

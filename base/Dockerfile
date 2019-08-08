@@ -15,7 +15,6 @@ ENV LC_ALL $LANG
 ENV RUNNER_USER analyzer_runner
 ENV RUNNER_USER_HOME /home/$RUNNER_USER
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends \
@@ -99,3 +98,4 @@ RUN gem install bundler --version $BUNDLER1_VERSION && \
 
 
 WORKDIR /analyzer
+CMD ruby -v && gem -v && bundle -v

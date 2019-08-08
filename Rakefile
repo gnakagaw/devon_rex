@@ -1,7 +1,6 @@
 require 'erb'
 require 'dotenv/load'
 
-# TODO: Add the rest of contexts
 BUILD_CONTEXTS = %w[base go java npm php python ruby swift].freeze
 
 namespace :dockerfile do
@@ -42,10 +41,22 @@ namespace :docker do
   task :run do
     sh "docker run #{image_name}"
   end
+
+  desc 'Run docker push'
+  task :push do
+    sh "docker login -u #{docker_user} -p #{docker_password}"
+    sh "docker tag #{image_name} #{image_name_latest}"
+    sh "docker push #{image_name}"
+    sh "docker push #{image_name_latest}"
+  end
 end
 
 def image_name
   "sider/devon_rex_#{build_context}:#{tag}"
+end
+
+def image_name_latest
+  "sider/devon_rex_#{build_context}:latest"
 end
 
 def build_context
@@ -54,4 +65,12 @@ end
 
 def tag
   ENV.fetch('TAG').tap { |value| raise 'Environment variable `TAG` must not be an empty string.' unless value.length > 0 }
+end
+
+def docker_user
+  ENV.fetch('DOCKER_USER')
+end
+
+def docker_password
+  ENV.fetch('DOCKER_PASSWORD')
 end

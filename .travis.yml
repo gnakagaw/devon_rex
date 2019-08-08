@@ -4,32 +4,24 @@ services:
   - docker
 
 env:
-  global:
-    - SAVE_DIR=$HOME/docker-images
-    - TAG="${TRAVIS_COMMIT}"
-  matrix:
-    - BUILD_CONTEXT=base
-    - BUILD_CONTEXT=go
-
-cache:
-  directories:
-    - "${SAVE_DIR}"
+  - BUILD_CONTEXT=base
+  - BUILD_CONTEXT=go
+  - BUILD_CONTEXT=java
 
 before_install:
   - gem install bundler
 
 script:
   - set -e
+  - export TAG="${TRAVIS_TAG:-${TRAVIS_COMMIT}}"
   - docker info
   - bundle exec rake dockerfile:generate
   - bundle exec rake dockerfile:verify
   - bundle exec rake docker:build
   - bundle exec rake docker:run
 
-jobs:
-  include:
-    - stage: Release
-      if: type != pull_request AND tag IS present
-      script:
-        - set -e
-        - TAG="${TRAVIS_TAG}" echo 'TODO: Do something'
+deploy:
+  provider: script
+  script: echo 'TODO do docker push'
+  on:
+    tags: true

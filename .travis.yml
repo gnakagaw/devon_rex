@@ -10,6 +10,7 @@ env:
   - BUILD_CONTEXT=npm
   - BUILD_CONTEXT=php
   - BUILD_CONTEXT=python
+  - BUILD_CONTEXT=ruby
 
 before_install:
   - gem install bundler

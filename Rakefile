@@ -2,7 +2,7 @@ require 'erb'
 require 'dotenv/load'
 
 # TODO: Add the rest of contexts
-BUILD_CONTEXTS = %w[base go java npm].freeze
+BUILD_CONTEXTS = %w[base go java npm php].freeze
 
 namespace :dockerfile do
   desc 'Generate Dockerfile from a template'

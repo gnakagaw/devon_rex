@@ -9,6 +9,7 @@ env:
   - BUILD_CONTEXT=java
   - BUILD_CONTEXT=npm
   - BUILD_CONTEXT=php
+  - BUILD_CONTEXT=python
 
 before_install:
   - gem install bundler

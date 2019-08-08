@@ -8,6 +8,7 @@ env:
   - BUILD_CONTEXT=go
   - BUILD_CONTEXT=java
   - BUILD_CONTEXT=npm
+  - BUILD_CONTEXT=php
 
 before_install:
   - gem install bundler

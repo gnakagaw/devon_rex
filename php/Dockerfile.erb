@@ -1,0 +1,19 @@
+FROM php:7.3.8-buster
+
+<%= ERB.new(File.read('base/Dockerfile.env.erb')).result %>
+<%= ERB.new(File.read('base/Dockerfile.prepare.erb')).result %>
+
+# PHP configuration
+RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
+COPY php/sider.ini $PHP_INI_DIR/conf.d/sider.ini
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Following instructions should be run by $RUNNER_USER
+USER $RUNNER_USER
+
+<%= ERB.new(File.read('base/Dockerfile.build-ruby.erb')).result %>
+
+WORKDIR /analyzer
+CMD php -v && composer --version

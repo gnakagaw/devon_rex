@@ -24,6 +24,7 @@ script:
   - bundle exec rake dockerfile:verify
   - bundle exec rake docker:build
   - bundle exec rake docker:run
+  - bundle exec rake docker:test
 
 deploy:
   provider: script

@@ -97,3 +97,4 @@ RUN gem install bundler --version $BUNDLER1_VERSION && \
 
 
 WORKDIR /analyzer
+CMD swift -version

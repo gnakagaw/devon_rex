@@ -27,6 +27,6 @@ script:
 
 deploy:
   provider: script
-  script: echo 'TODO do docker push'
+  script: bundle exec rake docker:push
   on:
     tags: true

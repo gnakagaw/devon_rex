@@ -39,7 +39,14 @@ namespace :docker do
 
   desc 'Run docker run without command. This task expects each image to show versions'
   task :run do
-    sh "docker run #{image_name}"
+    sh "docker run --rm #{image_name}"
+  end
+
+  desc 'Test with docker:run'
+  task :test do
+    raise 'Invalid WORKDIR' unless `docker run --rm #{image_name} pwd`.chomp == '/analyzer'
+    raise 'Insufficient permission on WORKDIR' unless sh "docker run --rm #{image_name} touch file.txt"
+    raise 'You must clean up WORKDIR' unless `docker run --rm #{image_name} ls` == ''
   end
 
   desc 'Run docker push'

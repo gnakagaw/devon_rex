@@ -63,6 +63,8 @@ RUN apt-get -qyy autoremove && \
 
 # Create a user
 RUN adduser --system --shell /bin/bash --home $RUNNER_USER_HOME $RUNNER_USER
+RUN install -o $RUNNER_USER -d /analyzer
+WORKDIR /analyzer
 
 
 # Install Java
@@ -109,5 +111,4 @@ RUN gem install bundler --version $BUNDLER1_VERSION && \
     gem install bundler --version $BUNDLER2_VERSION
 
 
-WORKDIR /analyzer
 CMD java -version && javac -version

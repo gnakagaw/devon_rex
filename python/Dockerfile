@@ -63,6 +63,8 @@ RUN apt-get -qyy autoremove && \
 
 # Create a user
 RUN adduser --system --shell /bin/bash --home $RUNNER_USER_HOME $RUNNER_USER
+RUN install -o $RUNNER_USER -d /analyzer
+WORKDIR /analyzer
 
 
 # Following instructions should be run by $RUNNER_USER

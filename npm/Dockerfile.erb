@@ -8,5 +8,4 @@ USER $RUNNER_USER
 
 <%= ERB.new(File.read('base/Dockerfile.build-ruby.erb')).result %>
 
-WORKDIR /analyzer
 CMD node -v && npm -v && yarn -v

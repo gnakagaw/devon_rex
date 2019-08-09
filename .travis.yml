@@ -11,6 +11,7 @@ env:
   - BUILD_CONTEXT=php
   - BUILD_CONTEXT=python
   - BUILD_CONTEXT=ruby
+  - BUILD_CONTEXT=swift
 
 before_install:
   - gem install bundler

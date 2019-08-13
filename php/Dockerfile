@@ -74,8 +74,13 @@ COPY php/sider.ini $PHP_INI_DIR/conf.d/sider.ini
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+ENV COMPOSER_HOME $RUNNER_USER_HOME/.composer
+ENV COMPOSER_VENDOR_BIN $COMPOSER_HOME/vendor/bin
+ENV PATH $COMPOSER_VENDOR_BIN:$PATH
+
 # Following instructions should be run by $RUNNER_USER
 USER $RUNNER_USER
+RUN mkdir -p $COMPOSER_VENDOR_BIN
 
 RUN test `whoami` = "$RUNNER_USER" && \
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv && \

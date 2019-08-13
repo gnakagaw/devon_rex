@@ -47,6 +47,7 @@ RUN apt-get update -y && \
         locales \
         tzdata \
         git \
+        openssh-client \
         unzip \
         sudo \
         ;

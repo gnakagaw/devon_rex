@@ -2,7 +2,7 @@
 
 # devon_rex
 
-Docker images for Sider runners.
+Docker images for [Sider Runners](https://github.com/sider/runners).
 
 This repository's release tags indicate the Docker image tag, and all Docker images have the same tag.
 

@@ -26,6 +26,11 @@ script:
   - bundle exec rake docker:run
   - bundle exec rake docker:test
 
+branches:
+  only:
+    - master
+    - /^\d+\.\d+.\d+$/ # for tags; e.g. `3.2.1`, `0.3.1`
+
 deploy:
   provider: script
   skip_cleanup: true

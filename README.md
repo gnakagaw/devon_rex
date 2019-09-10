@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/sider/devon_rex.svg?branch=master)](https://travis-ci.com/sider/devon_rex)
-
 # devon_rex
 
 Docker images for [Sider Runners](https://github.com/sider/runners).

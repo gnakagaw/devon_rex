@@ -80,6 +80,16 @@ RUN curl -fsSLO --compressed $TAR_URL && \
     tar -xzf "openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" -C /usr/local/java --strip-components=1 && \
     rm -rf "openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" sha256.txt
 
+# Install Maven
+ENV MAVEN_VERSION 3.6.2
+ENV PATH /usr/local/maven/bin:$PATH
+ARG MAVEN_BINARY_URL=https://www.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+RUN curl -fsSL --compressed "${MAVEN_BINARY_URL}" -o maven-bin.tar.gz && \
+    curl -fsSL --compressed "${MAVEN_BINARY_URL}.sha512" | xargs -I {} echo "{} *maven-bin.tar.gz" | sha512sum --check --strict && \
+    mkdir -p /usr/local/maven && \
+    tar -xzf maven-bin.tar.gz -C /usr/local/maven --strip-components 1 && \
+    rm maven-bin.tar.gz
+
 # Following instructions should be run by $RUNNER_USER
 USER $RUNNER_USER
 
@@ -112,4 +122,4 @@ RUN gem install bundler --version $BUNDLER1_VERSION && \
     gem install bundler --version $BUNDLER2_VERSION
 
 
-CMD java -version && javac -version
+CMD java -version && javac -version && mvn -v

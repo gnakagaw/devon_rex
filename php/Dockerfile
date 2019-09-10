@@ -98,7 +98,7 @@ RUN test `whoami` = "$RUNNER_USER" && \
     git clone https://github.com/rbenv/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build && \
     cd ${RBENV_ROOT}/plugins/ruby-build && \
     git checkout $RBENV_RUBY_BUILD_COMMIT_HASH && \
-    rbenv install --verbose $GLOBAL_RUBY_VERSION && \
+    rbenv install $GLOBAL_RUBY_VERSION && \
     rbenv global $GLOBAL_RUBY_VERSION && \
     echo 'install: --no-document' >> ~/.gemrc && \
     echo 'update: --no-document' >> ~/.gemrc

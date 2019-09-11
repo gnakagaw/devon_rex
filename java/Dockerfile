@@ -2,7 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.erb INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM debian:buster-20190708
+FROM debian:buster-20190812
 
 ENV GLOBAL_RUBY_VERSION 2.5.5
 ENV BUNDLER1_VERSION 1.17.3

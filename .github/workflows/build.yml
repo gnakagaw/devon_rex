@@ -52,3 +52,5 @@ jobs:
           bundle exec rake docker:push
         env:
           BUILD_CONTEXT: ${{ matrix.build-context }}
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

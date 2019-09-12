@@ -7,8 +7,8 @@ FROM debian:buster-20190910
 ENV GLOBAL_RUBY_VERSION 2.5.5
 ENV BUNDLER1_VERSION 1.17.3
 ENV BUNDLER2_VERSION 2.0.2
-ENV RBENV_COMMIT_HASH 4e923221ce57a04ab52bddd638473d566347711f
-ENV RBENV_RUBY_BUILD_COMMIT_HASH 0e9094b3cba673efb7554f6bd523779c8a3c0bc5
+ENV DEVON_REX_RBENV_VERSION v1.1.2
+ENV DEVON_REX_RUBY_BUILD_VERSION v20190828
 ENV LANG en_US.UTF-8
 ENV LANGUAGE $LANG
 ENV LC_ALL $LANG
@@ -74,7 +74,7 @@ USER $RUNNER_USER
 RUN test `whoami` = "$RUNNER_USER" && \
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv && \
     cd ~/.rbenv && \
-    git checkout $RBENV_COMMIT_HASH && \
+    git checkout $DEVON_REX_RBENV_VERSION && \
     src/configure && \
     make -j $(nproc) -C src && \
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile && \
@@ -85,7 +85,7 @@ RUN test `whoami` = "$RUNNER_USER" && \
     mkdir -p ${RBENV_ROOT}/plugins && \
     git clone https://github.com/rbenv/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build && \
     cd ${RBENV_ROOT}/plugins/ruby-build && \
-    git checkout $RBENV_RUBY_BUILD_COMMIT_HASH && \
+    git checkout $DEVON_REX_RUBY_BUILD_VERSION && \
     rbenv install $GLOBAL_RUBY_VERSION && \
     rbenv global $GLOBAL_RUBY_VERSION && \
     echo 'install: --no-document' >> ~/.gemrc && \

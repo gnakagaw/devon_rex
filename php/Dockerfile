@@ -83,27 +83,27 @@ ENV PATH $COMPOSER_VENDOR_BIN:$PATH
 USER $RUNNER_USER
 RUN mkdir -p $COMPOSER_VENDOR_BIN
 
-RUN test `whoami` = "$RUNNER_USER" && \
+RUN test $(whoami) = "$RUNNER_USER" && \
     git clone https://github.com/rbenv/rbenv.git ~/.rbenv && \
     cd ~/.rbenv && \
-    git checkout $DEVON_REX_RBENV_VERSION && \
+    git checkout --quiet $DEVON_REX_RBENV_VERSION && \
     src/configure && \
     make -j $(nproc) -C src && \
     echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile && \
     echo 'eval "$(rbenv init -)"' >> ~/.bash_profile && \
-    ~/.rbenv/bin/rbenv init || : && \
     . ~/.bash_profile && \
     RBENV_ROOT=$(rbenv root) && \
     mkdir -p ${RBENV_ROOT}/plugins && \
     git clone https://github.com/rbenv/ruby-build.git ${RBENV_ROOT}/plugins/ruby-build && \
     cd ${RBENV_ROOT}/plugins/ruby-build && \
-    git checkout $DEVON_REX_RUBY_BUILD_VERSION && \
+    git checkout --quiet $DEVON_REX_RUBY_BUILD_VERSION && \
     rbenv install $GLOBAL_RUBY_VERSION && \
     rbenv global $GLOBAL_RUBY_VERSION && \
     echo 'install: --no-document' >> ~/.gemrc && \
     echo 'update: --no-document' >> ~/.gemrc
 
-ENV PATH $RUNNER_USER_HOME/.rbenv/versions/$GLOBAL_RUBY_VERSION/bin:$PATH
+ENV PATH $RUNNER_USER_HOME/.rbenv/versions/$GLOBAL_RUBY_VERSION/bin:$RUNNER_USER_HOME/.rbenv/bin:$PATH
+RUN rbenv -v
 
 # NOTE: Install bundler v1 as well as v2 because runner applications need them
 #       in order to parse both versions of Gemfile.lock.

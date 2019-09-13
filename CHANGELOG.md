@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.1.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.2.0...HEAD)
+
+## 2.2.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.1.0...2.2.0)
 
 - Bump debian from buster-20190812 to buster-20190910 [#36](https://github.com/sider/devon_rex/pull/36) [#37](https://github.com/sider/devon_rex/pull/37) [#38](https://github.com/sider/devon_rex/pull/38)
 - Use stable versions of rbenv and ruby-build [#39](https://github.com/sider/devon_rex/pull/39)

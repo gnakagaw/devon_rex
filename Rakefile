@@ -5,6 +5,9 @@ ENV['GLOBAL_RUBY_VERSION'] = Pathname('.ruby-version').read.chomp!
 
 BUILD_CONTEXTS = %w[base go java npm php python ruby swift].freeze
 
+require 'aufgaben/release'
+Aufgaben::Release.new
+
 namespace :dockerfile do
   desc 'Generate Dockerfile from a template'
   task :generate do

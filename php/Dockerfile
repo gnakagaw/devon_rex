@@ -4,7 +4,7 @@
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 FROM php:7.3.9-buster
 
-ENV GLOBAL_RUBY_VERSION 2.5.5
+ENV GLOBAL_RUBY_VERSION 2.6.4
 ENV BUNDLER1_VERSION 1.17.3
 ENV BUNDLER2_VERSION 2.0.2
 ENV DEVON_REX_RBENV_VERSION v1.1.2
@@ -99,17 +99,21 @@ RUN test $(whoami) = "$RUNNER_USER" && \
     git checkout --quiet $DEVON_REX_RUBY_BUILD_VERSION && \
     rbenv install $GLOBAL_RUBY_VERSION && \
     rbenv global $GLOBAL_RUBY_VERSION && \
+    rbenv versions && \
+    test $(ruby -e 'puts RUBY_VERSION') = "$GLOBAL_RUBY_VERSION" && \
     echo 'install: --no-document' >> ~/.gemrc && \
-    echo 'update: --no-document' >> ~/.gemrc
+    echo 'update: --no-document' >> ~/.gemrc && \
+    # NOTE: Install bundler v1 as well as v2 because runner applications need them
+    #       in order to parse both versions of Gemfile.lock.
+    #       See https://bundler.io/blog/2019/01/03/announcing-bundler-2.html
+    gem install bundler --version $BUNDLER1_VERSION && \
+    gem install bundler --version $BUNDLER2_VERSION && \
+    bundle -v | grep -q "$BUNDLER2_VERSION"
 
-ENV PATH $RUNNER_USER_HOME/.rbenv/versions/$GLOBAL_RUBY_VERSION/bin:$RUNNER_USER_HOME/.rbenv/bin:$PATH
+ENV PATH $RUNNER_USER_HOME/.rbenv/shims:$RUNNER_USER_HOME/.rbenv/bin:$PATH
+
+# Test if rbenv is installed successfully
 RUN rbenv -v
-
-# NOTE: Install bundler v1 as well as v2 because runner applications need them
-#       in order to parse both versions of Gemfile.lock.
-#       See https://bundler.io/blog/2019/01/03/announcing-bundler-2.html
-RUN gem install bundler --version $BUNDLER1_VERSION && \
-    gem install bundler --version $BUNDLER2_VERSION
 
 
 CMD php -v && composer --version

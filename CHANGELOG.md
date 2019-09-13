@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Bump debian from buster-20190812 to buster-20190910 [#36](https://github.com/sider/devon_rex/pull/36) [#37](https://github.com/sider/devon_rex/pull/37) [#38](https://github.com/sider/devon_rex/pull/38)
 - Use stable versions of rbenv and ruby-build [#39](https://github.com/sider/devon_rex/pull/39)
 - Add rbenv to PATH [#41](https://github.com/sider/devon_rex/pull/41)
+- Bump Ruby from 2.5.5 to 2.6.4 [#42](https://github.com/sider/devon_rex/pull/42)
 
 ## 2.1.0
 

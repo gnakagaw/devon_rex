@@ -49,9 +49,9 @@ namespace :docker do
 
   desc 'Test with docker:run'
   task :test do
-    raise 'Invalid WORKDIR' unless `docker run --rm #{image_name} pwd`.chomp == '/analyzer'
-    raise 'Insufficient permission on WORKDIR' unless sh "docker run --rm #{image_name} touch file.txt"
-    raise 'You must clean up WORKDIR' unless `docker run --rm #{image_name} ls` == ''
+    abort 'Invalid WORKDIR' unless `docker run --rm #{image_name} pwd`.chomp == '/analyzer'
+    abort 'Insufficient permission on WORKDIR' unless sh "docker run --rm #{image_name} touch file.txt"
+    abort 'You must clean up WORKDIR' unless `docker run --rm #{image_name} ls`.chomp.empty?
   end
 
   desc 'Run docker push'
@@ -76,7 +76,8 @@ def build_context
 end
 
 def tag
-  ENV.fetch('TAG').tap { |value| raise 'Environment variable `TAG` must not be an empty string.' unless value.length > 0 }
+  key = 'TAG'
+  ENV.fetch(key).tap { |value| abort "Environment variable `#{key}` must not be empty." if value.empty? }
 end
 
 def docker_user

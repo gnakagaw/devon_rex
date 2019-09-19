@@ -8,7 +8,9 @@ All notable changes to this project will be documented in this file.
 
 ## 2.2.1
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.2.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.2.1...HEAD)
+
+- Install Pipenv in the Python image [#48](https://github.com/sider/devon_rex/pull/48)
 
 ## 2.2.0
 

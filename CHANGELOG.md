@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.2.1...HEAD)
 
+- Install GnuPG [#49](https://github.com/sider/devon_rex/pull/49)
+
 ## 2.2.1
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.2.0...2.2.1)

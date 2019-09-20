@@ -50,6 +50,7 @@ RUN apt-get update -y && \
         openssh-client \
         unzip \
         sudo \
+        gnupg \
         ;
 
 # Configure locale

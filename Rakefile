@@ -30,8 +30,7 @@ namespace :dockerfile do
     begin
       sh 'git diff --exit-code'
     rescue
-      STDERR.puts 'Run `bundle exec rake dockerfile:generate` and include the changes in commit'
-      exit(1)
+      abort 'Run `bundle exec rake dockerfile:generate` and include the changes in commit'
     end
   end
 end

@@ -1,7 +1,7 @@
 FROM swift:4.2.4
 
 <%= ERB.new(File.read('base/Dockerfile.env.erb')).result %>
-<%= ERB.new(File.read('swift/Dockerfile.prepare.erb')).result %>
+<%= ERB.new(File.read('base/Dockerfile.prepare.erb')).result %>
 
 # Following instructions should be run by $RUNNER_USER
 USER $RUNNER_USER

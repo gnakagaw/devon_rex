@@ -16,57 +16,8 @@ ENV RUNNER_USER analyzer_runner
 ENV RUNNER_USER_HOME /home/$RUNNER_USER
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends \
-        autoconf \
-        build-essential \
-        imagemagick \
-        libbz2-dev \
-        libcurl4-openssl-dev \
-        libevent-dev \
-        libffi-dev \
-        libglib2.0-dev \
-        libjpeg-dev \
-        libmagickcore-dev \
-        libmagickwand-dev \
-        libmariadb-dev-compat \
-        libncurses-dev \
-        libpq-dev \
-        libreadline-dev \
-        libsqlite3-dev \
-        libssl-dev \
-        libxml2-dev \
-        libxslt-dev \
-        libyaml-dev \
-        wget \
-        zlib1g-dev \
-        software-properties-common \
-        patchutils \
-        curl \
-        procps \
-        locales \
-        tzdata \
-        git \
-        openssh-client \
-        unzip \
-        sudo \
-        gnupg \
-        ;
-
-# Configure locale
-RUN sed -i -e "s/# ${LANGUAGE}/${LANGUAGE}/" /etc/locale.gen && \
-    locale-gen $LANGUAGE && \
-    dpkg-reconfigure --frontend noninteractive locales
-
-# Clean up
-RUN apt-get -qyy autoremove && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get -qyy clean
-
-# Create a user
-RUN adduser --system --shell /bin/bash --home $RUNNER_USER_HOME $RUNNER_USER
-RUN install -o $RUNNER_USER -d /analyzer
-WORKDIR /analyzer
+COPY base/bin/prepare /tmp/work/
+RUN /tmp/work/prepare && rm -rf /tmp/work
 
 
 # Following instructions should be run by $RUNNER_USER

@@ -53,6 +53,7 @@ jobs:
             export TAG=master
           else
             export TAG="$(echo ${GITHUB_REF} | sed 's!refs/tags/!!' | sed 's!/!_!g')"
+            export TAG_LATEST=true
           fi
           bundle exec rake docker:push
         env:

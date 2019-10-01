@@ -1,2 +1,2 @@
-COPY base/bin/prepare /tmp/work/
-RUN /tmp/work/prepare && rm -rf /tmp/work
+COPY base/bin/* /tmp/devon_rex_work/
+RUN /tmp/devon_rex_work/prepare

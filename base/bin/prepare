@@ -3,20 +3,11 @@ set -euo pipefail
 
 # Determine the target platform
 platform_name=$(sh -c '. /etc/os-release ; echo $NAME')
-if [[ $platform_name = 'Debian GNU/Linux' ]]; then
-  is_debian=true
-else
-  is_debian=false
-fi
-if [[ $platform_name = 'Ubuntu' ]]; then
-  is_ubuntu=true
-else
-  is_ubuntu=false
-fi
-if [[ $is_debian = false ]] && [[ $is_ubuntu = false ]]; then
-  echo "Unknown distribution! '${platform_name}'"
-  exit 1
-fi
+case $platform_name in
+  'Debian GNU/Linux') is_debian=true  is_ubuntu=false ;;
+  'Ubuntu')           is_debian=false is_ubuntu=true  ;;
+  *) echo "Unknown platform! '${platform_name}'"; exit 1 ;;
+esac
 
 # Install required packages
 required_packages=(

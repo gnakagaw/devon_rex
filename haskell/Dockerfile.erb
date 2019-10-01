@@ -1,0 +1,13 @@
+# NOTE: The base image is `debian:stretch` but we uses basically `debian:buster`.
+#       See https://github.com/freebroccolo/docker-haskell/issues/94
+FROM haskell:8.8.1
+
+<%= ERB.new(File.read('base/Dockerfile.env.erb')).result %>
+<%= ERB.new(File.read('base/Dockerfile.prepare.erb')).result %>
+
+# Following instructions should be run by $RUNNER_USER
+USER $RUNNER_USER
+
+<%= ERB.new(File.read('base/Dockerfile.build-ruby.erb')).result %>
+
+CMD ghci --version && cabal --version

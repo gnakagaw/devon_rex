@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.2.2...HEAD)
 
+- Add Haskell image [#60](https://github.com/sider/devon_rex/pull/60)
+
 ## 2.2.2
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.2.1...2.2.2)

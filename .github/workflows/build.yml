@@ -19,6 +19,7 @@ jobs:
         build-context:
           - base
           - go
+          - haskell
           - java
           - npm
           - php

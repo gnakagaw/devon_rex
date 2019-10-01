@@ -59,9 +59,11 @@ namespace :docker do
   desc 'Run docker push'
   task :push do
     sh "docker login -u #{docker_user} -p #{docker_password}"
-    sh "docker tag #{image_name} #{image_name_latest}"
     sh "docker push #{image_name}"
-    sh "docker push #{image_name_latest}"
+    if tag_latest?
+      sh "docker tag #{image_name} #{image_name_latest}"
+      sh "docker push #{image_name_latest}"
+    end
   end
 end
 
@@ -80,6 +82,10 @@ end
 def tag
   key = 'TAG'
   ENV.fetch(key).tap { |value| abort "Environment variable `#{key}` must not be empty." if value.empty? }
+end
+
+def tag_latest?
+  ENV['TAG_LATEST'] == 'true'
 end
 
 def docker_user

@@ -1,14 +1,24 @@
 #!/bin/bash
 set -euo pipefail
 
-is_debian() {
-  [[ $(awk -F= '/^NAME/{print $2}' /etc/os-release) = "Debian GNU/Linux" ]]
-}
+# Determine the target platform
+platform_name=$(sh -c '. /etc/os-release ; echo $NAME')
+if [[ $platform_name = 'Debian GNU/Linux' ]]; then
+  is_debian=true
+else
+  is_debian=false
+fi
+if [[ $platform_name = 'Ubuntu' ]]; then
+  is_ubuntu=true
+else
+  is_ubuntu=false
+fi
+if [[ $is_debian = false ]] && [[ $is_ubuntu = false ]]; then
+  echo "Unknown distribution! '${platform_name}'"
+  exit 1
+fi
 
-is_ubuntu() {
-  [[ $(awk -F= '/^NAME/{print $2}' /etc/os-release) = "Ubuntu" ]]
-}
-
+# Install required packages
 required_packages=(
   autoconf
   build-essential
@@ -43,16 +53,16 @@ required_packages=(
   zlib1g-dev
 )
 
-if is_debian; then
+if [[ $is_debian = true ]]; then
   required_packages+=(
     libmariadb-dev-compat
     locales
-    python-software-properties
   )
-elif is_ubuntu; then
+elif [[ $is_ubuntu = true ]]; then
   required_packages+=(
     libmysqlclient-dev
     language-pack-en
+    python-software-properties
   )
 fi
 
@@ -60,11 +70,11 @@ apt-get update -y
 apt-get install -qq -y --no-install-recommends ${required_packages[*]}
 
 # Configure locale
-if is_debian; then
+if [[ $is_debian = true ]]; then
   sed -i -e "s/# ${LANGUAGE}/${LANGUAGE}/" /etc/locale.gen
   locale-gen "$LANGUAGE"
   dpkg-reconfigure --frontend noninteractive locales
-elif is_ubuntu; then
+elif [[ $is_ubuntu = true ]]; then
   locale-gen "$LANGUAGE"
   update-locale "$LANGUAGE"
 fi
@@ -76,4 +86,3 @@ apt-get -qyy clean
 
 # Create a user
 adduser --system --shell /bin/bash --home "$RUNNER_USER_HOME" "$RUNNER_USER"
-install -o "$RUNNER_USER" -d /analyzer

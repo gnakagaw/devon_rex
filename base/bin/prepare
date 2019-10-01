@@ -16,19 +16,13 @@ required_packages=(
   curl
   git
   gnupg
-  imagemagick
   libbz2-dev
   libcurl4-openssl-dev
   libevent-dev
   libffi-dev
   libglib2.0-dev
-  libjpeg-dev
-  libmagickcore-dev
-  libmagickwand-dev
   libncurses-dev
-  libpq-dev
   libreadline-dev
-  libsqlite3-dev
   libssl-dev
   libxml2-dev
   libxslt-dev
@@ -46,12 +40,10 @@ required_packages=(
 
 if [[ $is_debian = true ]]; then
   required_packages+=(
-    libmariadb-dev-compat
     locales
   )
 elif [[ $is_ubuntu = true ]]; then
   required_packages+=(
-    libmysqlclient-dev
     language-pack-en
     python-software-properties
   )

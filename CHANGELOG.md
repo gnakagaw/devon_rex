@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 [Full diff](https://github.com/sider/devon_rex/compare/2.2.2...HEAD)
 
 - Add Haskell image [#60](https://github.com/sider/devon_rex/pull/60)
+- Bump php from 7.3.9-buster to 7.3.10-buster [#57](https://github.com/sider/devon_rex/pull/57)
 
 ## 2.2.2
 

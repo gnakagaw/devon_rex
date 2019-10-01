@@ -42,7 +42,6 @@ jobs:
           bundle exec rake dockerfile:verify
           bundle exec rake docker:build
           bundle exec rake docker:run
-          bundle exec rake docker:test
         env:
           BUILD_CONTEXT: ${{ matrix.build-context }}
       - name: Publish the Docker image

@@ -1,4 +1,4 @@
-FROM php:7.3.9-buster
+FROM php:7.3.10-buster
 
 <%= ERB.new(File.read('base/Dockerfile.env.erb')).result %>
 <%= ERB.new(File.read('base/Dockerfile.prepare.erb')).result %>

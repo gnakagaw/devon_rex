@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Add Haskell image [#60](https://github.com/sider/devon_rex/pull/60)
 - Bump php from 7.3.9-buster to 7.3.10-buster [#57](https://github.com/sider/devon_rex/pull/57)
 - Bump golang from 1.12.7-buster to 1.13.1-buster [#54](https://github.com/sider/devon_rex/pull/54)
+- Remove unnecessary apt packages [#61](https://github.com/sider/devon_rex/pull/61)
 
 ## 2.2.2
 

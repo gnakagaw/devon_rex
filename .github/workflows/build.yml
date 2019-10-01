@@ -37,7 +37,11 @@ jobs:
           bundle install --jobs=4 --retry=3 --path=vendor/bundle
       - name: Build and test the Docker image
         run: |
-          export TAG="$(echo ${GITHUB_REF} | sed 's!refs/tags/!!' | sed 's!/!_!g')"
+          if [[ "$GITHUB_REF" = 'refs/heads/master' ]]; then
+            export TAG=master
+          else
+            export TAG="$(echo ${GITHUB_REF} | sed 's!refs/tags/!!' | sed 's!/!_!g')"
+          fi
           docker info
           bundle exec rake dockerfile:generate
           bundle exec rake dockerfile:verify

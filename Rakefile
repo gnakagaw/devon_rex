@@ -46,13 +46,6 @@ namespace :docker do
     sh "docker run --rm #{image_name}"
   end
 
-  desc 'Test with docker:run'
-  task :test do
-    abort 'Invalid WORKDIR' unless `docker run --rm #{image_name} pwd`.chomp == '/analyzer'
-    abort 'Insufficient permission on WORKDIR' unless sh "docker run --rm #{image_name} touch file.txt"
-    abort 'You must clean up WORKDIR' unless `docker run --rm #{image_name} ls`.chomp.empty?
-  end
-
   desc 'Run docker push'
   task :push do
     sh "docker login -u #{docker_user} -p #{docker_password}"

@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.3.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.3.1...HEAD)
+
+## 2.3.1
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.3.0...2.3.1)
 
 - Revert "Use official OpenJDK image" [#67](https://github.com/sider/devon_rex/pull/67)
 

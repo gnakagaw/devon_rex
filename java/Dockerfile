@@ -2,7 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.erb INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM debian:buster-20190910
+FROM openjdk:13-jdk-buster
 
 ENV GLOBAL_RUBY_VERSION 2.6.4
 ENV BUNDLER1_VERSION 1.17.3
@@ -19,18 +19,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY base/bin/* /tmp/devon_rex_work/
 RUN /tmp/devon_rex_work/prepare
 
-
-# Install Java
-ENV JAVA_VERSION 12.0.1
-ENV PATH /usr/local/java/bin:$PATH
-ARG TAR_URL=https://download.java.net/java/GA/jdk${JAVA_VERSION}/69cfe15208a647278a19ef0990eea691/12/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz
-ARG SHA256_URL=https://download.java.net/java/GA/jdk${JAVA_VERSION}/69cfe15208a647278a19ef0990eea691/12/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz.sha256
-RUN curl -fsSLO --compressed $TAR_URL && \
-    curl -fsSL -o sha256.txt --compressed $SHA256_URL && \
-    echo "$(cat sha256.txt) *openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" | sha256sum --check --strict && \
-    mkdir -p /usr/local/java && \
-    tar -xzf "openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" -C /usr/local/java --strip-components=1 && \
-    rm -rf "openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" sha256.txt
 
 # Install Maven
 ENV MAVEN_VERSION 3.6.2

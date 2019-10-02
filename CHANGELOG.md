@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Bump golang from 1.12.7-buster to 1.13.1-buster [#54](https://github.com/sider/devon_rex/pull/54)
 - Remove unnecessary apt packages [#61](https://github.com/sider/devon_rex/pull/61)
 - Use official OpenJDK image [#66](https://github.com/sider/devon_rex/pull/66)
+- Publish images with `master` tag [#62](https://github.com/sider/devon_rex/pull/62)
 
 ## 2.2.2
 

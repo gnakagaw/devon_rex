@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.3.0...HEAD)
 
+- Revert "Use official OpenJDK image" [#67](https://github.com/sider/devon_rex/pull/67)
+
 ## 2.3.0
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.2.2...2.3.0)

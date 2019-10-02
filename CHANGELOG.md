@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.2.2...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.3.0...HEAD)
+
+## 2.3.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.2.2...2.3.0)
 
 - Add Haskell image [#60](https://github.com/sider/devon_rex/pull/60)
 - Bump php from 7.3.9-buster to 7.3.10-buster [#57](https://github.com/sider/devon_rex/pull/57)

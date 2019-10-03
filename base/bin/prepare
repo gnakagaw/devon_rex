@@ -69,3 +69,13 @@ apt-get -qyy clean
 
 # Create a user
 adduser --system --shell /bin/bash --home "$RUNNER_USER_HOME" "$RUNNER_USER"
+
+# Configure Bash on shell
+cat<<'EOF' >> "${RUNNER_USER_HOME}/.bashrc"
+alias ls='ls --color=auto'
+alias ll='ls -lF'
+alias l='ls -lAF'
+alias grep='grep --color=auto'
+alias less='less -ciRM'
+EOF
+chown "${RUNNER_USER}:" "${RUNNER_USER_HOME}/.bashrc"

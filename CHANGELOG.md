@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.3.1...HEAD)
 
+- Add `.bashrc` [#68](https://github.com/sider/devon_rex/pull/68)
+
 ## 2.3.1
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.3.0...2.3.1)

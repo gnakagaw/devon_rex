@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.3.1...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.4.0...HEAD)
+
+## 2.4.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.3.1...2.4.0)
 
 - Add `.bashrc` [#68](https://github.com/sider/devon_rex/pull/68)
 - Downgrade Haskell from 8.8.1 to 8.6.5 [#69](https://github.com/sider/devon_rex/pull/69)

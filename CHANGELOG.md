@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 [Full diff](https://github.com/sider/devon_rex/compare/2.5.0...HEAD)
 
 - Bump Ruby from 2.6.4 to 2.6.5 [#79](https://github.com/sider/devon_rex/pull/79)
+- Bump debian from buster-20190910 to buster-20191014 in /base [#76](https://github.com/sider/devon_rex/pull/76)
 
 ## 2.5.0
 

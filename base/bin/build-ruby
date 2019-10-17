@@ -4,9 +4,9 @@ set -euo pipefail
 [[ $(whoami) = "$RUNNER_USER" ]] || (echo 'Unexpected running user!' ; exit 1)
 
 # Install rbenv
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone --branch "$DEVON_REX_RBENV_VERSION" --single-branch \
+    https://github.com/rbenv/rbenv.git ~/.rbenv
 cd ~/.rbenv
-git checkout --quiet "$DEVON_REX_RBENV_VERSION"
 src/configure
 make -j "$(nproc)" -C src
 cat <<'EOF' >> ~/.bash_profile
@@ -19,9 +19,9 @@ rbenv -v
 # Install ruby-build
 RBENV_ROOT=$(rbenv root)
 mkdir -p "${RBENV_ROOT}/plugins"
-git clone https://github.com/rbenv/ruby-build.git "${RBENV_ROOT}/plugins/ruby-build"
+git clone --branch "$DEVON_REX_RUBY_BUILD_VERSION" --single-branch \
+    https://github.com/rbenv/ruby-build.git "${RBENV_ROOT}/plugins/ruby-build"
 cd "${RBENV_ROOT}/plugins/ruby-build"
-git checkout --quiet "$DEVON_REX_RUBY_BUILD_VERSION"
 
 # Install Ruby
 rbenv install "$GLOBAL_RUBY_VERSION"

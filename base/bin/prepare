@@ -1,13 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-# Determine the target platform
-platform_name=$(sh -c '. /etc/os-release ; echo $NAME')
-case $platform_name in
-  'Debian GNU/Linux') is_debian=true  is_ubuntu=false ;;
-  'Ubuntu')           is_debian=false is_ubuntu=true  ;;
-  *) echo "Unknown platform! '${platform_name}'"; exit 1 ;;
-esac
+platform_name=$(sh -c '. /etc/os-release ; echo ${ID}:${VERSION_CODENAME}')
 
 # Install required packages
 required_packages=(
@@ -38,29 +32,27 @@ required_packages=(
   zlib1g-dev
 )
 
-if [[ $is_debian = true ]]; then
-  required_packages+=(
-    locales
-  )
-elif [[ $is_ubuntu = true ]]; then
-  required_packages+=(
-    language-pack-en
-    python-software-properties
-  )
-fi
-
 apt-get update -y
 apt-get install -qq -y --no-install-recommends ${required_packages[*]}
 
 # Configure locale
-if [[ $is_debian = true ]]; then
-  sed -i -e "s/# ${LANGUAGE}/${LANGUAGE}/" /etc/locale.gen
-  locale-gen "$LANGUAGE"
-  dpkg-reconfigure --frontend noninteractive locales
-elif [[ $is_ubuntu = true ]]; then
-  locale-gen "$LANGUAGE"
-  update-locale "$LANGUAGE"
-fi
+case "${platform_name}" in
+  'debian:buster' | 'debian:stretch' | 'ubuntu:bionic')
+    apt-get install -qq -y --no-install-recommends locales
+    sed -i -e "s/# ${LANGUAGE}/${LANGUAGE}/" /etc/locale.gen
+    locale-gen "$LANGUAGE"
+    dpkg-reconfigure --frontend noninteractive locales
+    ;;
+  'ubuntu:xenial')
+    apt-get install -qq -y --no-install-recommends language-pack-en python-software-properties
+    locale-gen "$LANGUAGE"
+    update-locale "$LANGUAGE"
+    ;;
+  *)
+    echo "Unknown platform! '${platform_name}'"
+    exit 1
+    ;;
+esac
 
 # Clean up
 apt-get -qyy autoremove
@@ -71,7 +63,7 @@ apt-get -qyy clean
 adduser --system --shell /bin/bash --home "$RUNNER_USER_HOME" "$RUNNER_USER"
 
 # Configure Bash on shell
-cat<<'EOF' >> "${RUNNER_USER_HOME}/.bashrc"
+cat << 'EOF' >> "${RUNNER_USER_HOME}/.bashrc"
 alias ls='ls --color=auto'
 alias ll='ls -lF'
 alias l='ls -lAF'

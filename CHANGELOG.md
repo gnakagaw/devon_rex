@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - Bump golang from 1.13.1-buster to 1.13.3-buster in /go [#81](https://github.com/sider/devon_rex/pull/81)
 - Bump node from 12.12.0-buster to 12.13.0-buster in /npm [#82](https://github.com/sider/devon_rex/pull/82)
+- Bump swift from 4.2.4 to 5.1.1 in /swift [#73](https://github.com/sider/devon_rex/pull/73)
 
 ## 2.6.0
 

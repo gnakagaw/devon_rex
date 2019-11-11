@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Bump php from 7.3.10-buster to 7.3.11-buster in /php [#86](https://github.com/sider/devon_rex/pull/86)
 - Bump golang from 1.13.3-buster to 1.13.4-buster in /go [#89](https://github.com/sider/devon_rex/pull/89)
 - Bump swift from 5.1.1 to 5.1.2 in /swift [#90](https://github.com/sider/devon_rex/pull/90)
+- Bump ruby-build from v20191004 to v20191105 [#91](https://github.com/sider/devon_rex/pull/91)
 
 ## 2.7.0
 

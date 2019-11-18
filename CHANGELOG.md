@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.8.0...HEAD)
 
+- Update and fix the installed npm version [#93](https://github.com/sider/devon_rex/pull/93)
+
 ## 2.8.0
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.7.0...2.8.0)

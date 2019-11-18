@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.8.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.9.0...HEAD)
+
+## 2.9.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.8.0...2.9.0)
 
 - Update and fix the installed npm version [#93](https://github.com/sider/devon_rex/pull/93)
 

@@ -9,6 +9,7 @@ ENV BUNDLER1_VERSION 1.17.3
 ENV BUNDLER2_VERSION 2.0.2
 ENV DEVON_REX_RBENV_VERSION v1.1.2
 ENV DEVON_REX_RUBY_BUILD_VERSION v20191105
+ENV DEVON_REX_NPM_VERSION 6.13.0
 ENV LANG en_US.UTF-8
 ENV LANGUAGE $LANG
 ENV LC_ALL $LANG
@@ -19,6 +20,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY base/bin/* /tmp/devon_rex_work/
 RUN /tmp/devon_rex_work/prepare
 
+
+RUN npm install --global "npm@${DEVON_REX_NPM_VERSION}"
 
 # Following instructions should be run by $RUNNER_USER
 USER $RUNNER_USER

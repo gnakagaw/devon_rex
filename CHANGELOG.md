@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.9.0...HEAD)
 
+- Bump node from 12.13.0-buster to 12.13.1-buster [#96](https://github.com/sider/devon_rex/pull/96)
 - Bump php from 7.3.11-buster to 7.3.12-buster [#98](https://github.com/sider/devon_rex/pull/98)
 
 ## 2.9.0

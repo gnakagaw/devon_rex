@@ -3,6 +3,7 @@ FROM node:12.13.1-buster
 <%= ERB.new(File.read('base/Dockerfile.env.erb')).result %>
 <%= ERB.new(File.read('base/Dockerfile.prepare.erb')).result %>
 
+ENV DEVON_REX_NPM_VERSION <%= ENV.fetch('DEVON_REX_NPM_VERSION') %>
 RUN npm install --global "npm@${DEVON_REX_NPM_VERSION}"
 
 # Following instructions should be run by $RUNNER_USER

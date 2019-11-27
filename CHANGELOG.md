@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Bump php from 7.3.11-buster to 7.3.12-buster [#98](https://github.com/sider/devon_rex/pull/98)
 - Bump debian from buster-20191014 to buster-20191118 [#94](https://github.com/sider/devon_rex/pull/94) [#95](https://github.com/sider/devon_rex/pull/95) [#97](https://github.com/sider/devon_rex/pull/97)
 - Bump npm from 6.13.0 to 6.13.1 [#99](https://github.com/sider/devon_rex/pull/99)
+- Bump ruby-build from v20191105 to v20191124 [#100](https://github.com/sider/devon_rex/pull/100)
 
 ## 2.9.0
 

@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.10.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.11.0...HEAD)
+
+## 2.11.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.10.0...2.11.0)
 
 - Bump php from 7.3.12-buster to 7.4.0-buster [#103](https://github.com/sider/devon_rex/pull/103)
 - Bump golang from 1.13.4-buster to 1.13.5-buster [#104](https://github.com/sider/devon_rex/pull/104)

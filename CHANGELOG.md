@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.11.0...HEAD)
 
+- Bump maven from 3.6.2 to 3.6.3 [#106](https://github.com/sider/devon_rex/pull/106)
+
 ## 2.11.0
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.10.0...2.11.0)

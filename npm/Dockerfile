@@ -20,7 +20,7 @@ COPY base/bin/* /tmp/devon_rex_work/
 RUN /tmp/devon_rex_work/prepare
 
 
-ENV DEVON_REX_NPM_VERSION 6.13.1
+ENV DEVON_REX_NPM_VERSION 6.13.4
 RUN npm install --global "npm@${DEVON_REX_NPM_VERSION}"
 
 # Following instructions should be run by $RUNNER_USER

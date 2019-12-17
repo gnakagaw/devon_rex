@@ -2,7 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.erb INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM debian:buster-20191118
+FROM python:3.7.4-buster
 
 ENV GLOBAL_RUBY_VERSION 2.6.5
 ENV BUNDLER1_VERSION 1.17.3
@@ -19,28 +19,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY base/bin/* /tmp/devon_rex_work/
 RUN /tmp/devon_rex_work/prepare
 
+
+RUN pip install --upgrade pip && pip install pipenv
+
 USER $RUNNER_USER
 RUN /tmp/devon_rex_work/build-ruby
 ENV PATH ${RUNNER_USER_HOME}/.rbenv/shims:${RUNNER_USER_HOME}/.rbenv/bin:${PATH}
-
-
-# Install pyenv
-USER $RUNNER_USER
-RUN curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
-ARG PYENV_SHIMS_BIN="$RUNNER_USER_HOME/.pyenv/shims"
-ARG PYENV_BIN="$RUNNER_USER_HOME/.pyenv/bin"
-ENV PATH $PYENV_SHIMS_BIN:$PYENV_BIN:$PATH
-ENV PYTHON2_VERSION 2.7.16
-ENV PYTHON3_VERSION 3.7.4
-
-# Install Python 2/3 as well as Pipenv for each runtime
-RUN pyenv install ${PYTHON2_VERSION} && \
-    pyenv install ${PYTHON3_VERSION} && \
-    pyenv rehash && \
-    for version in $(pyenv versions --bare); do \
-      pyenv global ${version} && pip install pipenv; \
-    done && \
-    pyenv global ${PYTHON3_VERSION}
 
 USER root
 RUN rm -rf /tmp/devon_rex_work
@@ -49,4 +33,4 @@ RUN rm -rf /tmp/devon_rex_work
 USER $RUNNER_USER
 
 
-CMD pyenv versions
+CMD python --version && pip --version

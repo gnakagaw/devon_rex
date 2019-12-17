@@ -46,11 +46,15 @@ RUN curl -fsSLO --compressed "${MAVEN_BINARY_URL}" && \
     tar -xzf "${MAVEN_BINARY_FILE}" -C /usr/local/maven --strip-components 1 && \
     rm "${MAVEN_BINARY_FILE}"
 
-# Following instructions should be run by $RUNNER_USER
 USER $RUNNER_USER
-
 RUN /tmp/devon_rex_work/build-ruby
 ENV PATH ${RUNNER_USER_HOME}/.rbenv/shims:${RUNNER_USER_HOME}/.rbenv/bin:${PATH}
+
+USER root
+RUN rm -rf /tmp/devon_rex_work
+
+# Following instructions should be run by a non-root user
+USER $RUNNER_USER
 
 
 CMD java -version && javac -version && mvn -v

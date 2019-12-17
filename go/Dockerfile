@@ -24,11 +24,15 @@ RUN /tmp/devon_rex_work/prepare
 # See https://github.com/Masterminds/glide
 RUN curl https://glide.sh/get | sh
 
-# Following instructions should be run by $RUNNER_USER
 USER $RUNNER_USER
-
 RUN /tmp/devon_rex_work/build-ruby
 ENV PATH ${RUNNER_USER_HOME}/.rbenv/shims:${RUNNER_USER_HOME}/.rbenv/bin:${PATH}
+
+USER root
+RUN rm -rf /tmp/devon_rex_work
+
+# Following instructions should be run by a non-root user
+USER $RUNNER_USER
 
 
 CMD go version

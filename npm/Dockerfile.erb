@@ -6,9 +6,7 @@ FROM node:12.13.1-buster
 ENV DEVON_REX_NPM_VERSION <%= ENV.fetch('DEVON_REX_NPM_VERSION') %>
 RUN npm install --global "npm@${DEVON_REX_NPM_VERSION}"
 
-# Following instructions should be run by $RUNNER_USER
-USER $RUNNER_USER
-
 <%= ERB.new(File.read('base/Dockerfile.build-ruby.erb')).result %>
+<%= ERB.new(File.read('base/Dockerfile.cleanup.erb')).result %>
 
 CMD node -v && npm -v && yarn -v

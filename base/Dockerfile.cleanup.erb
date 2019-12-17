@@ -1,0 +1,5 @@
+USER root
+RUN rm -rf /tmp/devon_rex_work
+
+# Following instructions should be run by a non-root user
+USER $RUNNER_USER

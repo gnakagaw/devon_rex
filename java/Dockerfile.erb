@@ -16,14 +16,17 @@ RUN curl -fsSLO --compressed $TAR_URL && \
     rm -rf "openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" sha256.txt
 
 # Install Maven
-ENV MAVEN_VERSION 3.6.2
+ENV MAVEN_VERSION <%= ENV.fetch('MAVEN_VERSION') %>
 ENV PATH /usr/local/maven/bin:$PATH
 ARG MAVEN_BINARY_URL=https://www.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
+ARG MAVEN_BINARY_FILE=apache-maven-${MAVEN_VERSION}-bin.tar.gz
 RUN curl -fsSLO --compressed "${MAVEN_BINARY_URL}" && \
-    curl -fsSL  --compressed "${MAVEN_BINARY_URL}.sha512" | sha512sum --check --strict && \
+    curl -fsSL  --compressed "${MAVEN_BINARY_URL}.sha512" | \
+      xargs -I {} echo "{} *${MAVEN_BINARY_FILE}" | \
+      sha512sum --check --strict && \
     mkdir -p /usr/local/maven && \
-    tar -xzf "apache-maven-${MAVEN_VERSION}-bin.tar.gz" -C /usr/local/maven --strip-components 1 && \
-    rm "apache-maven-${MAVEN_VERSION}-bin.tar.gz"
+    tar -xzf "${MAVEN_BINARY_FILE}" -C /usr/local/maven --strip-components 1 && \
+    rm "${MAVEN_BINARY_FILE}"
 
 # Following instructions should be run by $RUNNER_USER
 USER $RUNNER_USER

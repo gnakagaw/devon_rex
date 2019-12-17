@@ -6,7 +6,7 @@ FROM debian:buster-20191118
 # Install Java
 ENV JAVA_VERSION <%= ENV.fetch('JAVA_VERSION') %>
 ENV PATH /usr/local/java/bin:${PATH}
-ARG JAVA_BINARY_URL=https://download.java.net/java/GA/jdk${JAVA_VERSION}/69cfe15208a647278a19ef0990eea691/12/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz
+ARG JAVA_BINARY_URL=https://download.java.net/java/GA/jdk${JAVA_VERSION}/e482c34c86bd4bf8b56c0b35558996b9/10/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz
 ARG JAVA_BINARY_FILE=openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz
 RUN curl -fsSLO --compressed "${JAVA_BINARY_URL}" && \
     curl -fsSL  --compressed "${JAVA_BINARY_URL}.sha256" | \

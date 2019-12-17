@@ -2,10 +2,6 @@ FROM debian:buster-20191118
 
 <%= ERB.new(File.read('base/Dockerfile.env.erb')).result %>
 <%= ERB.new(File.read('base/Dockerfile.prepare.erb')).result %>
-
-# Following instructions should be run by $RUNNER_USER
-USER $RUNNER_USER
-
 <%= ERB.new(File.read('base/Dockerfile.build-ruby.erb')).result %>
 
 # Install pyenv
@@ -25,4 +21,7 @@ RUN pyenv install ${PYTHON2_VERSION} && \
       pyenv global ${version} && pip install pipenv; \
     done && \
     pyenv global ${PYTHON3_VERSION}
+
+<%= ERB.new(File.read('base/Dockerfile.cleanup.erb')).result %>
+
 CMD pyenv versions

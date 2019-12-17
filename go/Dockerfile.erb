@@ -7,9 +7,7 @@ FROM golang:1.13.5-buster
 # See https://github.com/Masterminds/glide
 RUN curl https://glide.sh/get | sh
 
-# Following instructions should be run by $RUNNER_USER
-USER $RUNNER_USER
-
 <%= ERB.new(File.read('base/Dockerfile.build-ruby.erb')).result %>
+<%= ERB.new(File.read('base/Dockerfile.cleanup.erb')).result %>
 
 CMD go version

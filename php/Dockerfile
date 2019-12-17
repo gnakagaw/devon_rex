@@ -31,12 +31,18 @@ ENV COMPOSER_HOME $RUNNER_USER_HOME/.composer
 ENV COMPOSER_VENDOR_BIN $COMPOSER_HOME/vendor/bin
 ENV PATH $COMPOSER_VENDOR_BIN:$PATH
 
-# Following instructions should be run by $RUNNER_USER
 USER $RUNNER_USER
 RUN mkdir -p $COMPOSER_VENDOR_BIN
 
+USER $RUNNER_USER
 RUN /tmp/devon_rex_work/build-ruby
 ENV PATH ${RUNNER_USER_HOME}/.rbenv/shims:${RUNNER_USER_HOME}/.rbenv/bin:${PATH}
+
+USER root
+RUN rm -rf /tmp/devon_rex_work
+
+# Following instructions should be run by a non-root user
+USER $RUNNER_USER
 
 
 CMD php -v && composer --version

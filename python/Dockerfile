@@ -19,10 +19,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 COPY base/bin/* /tmp/devon_rex_work/
 RUN /tmp/devon_rex_work/prepare
 
-
-# Following instructions should be run by $RUNNER_USER
 USER $RUNNER_USER
-
 RUN /tmp/devon_rex_work/build-ruby
 ENV PATH ${RUNNER_USER_HOME}/.rbenv/shims:${RUNNER_USER_HOME}/.rbenv/bin:${PATH}
 
@@ -44,4 +41,12 @@ RUN pyenv install ${PYTHON2_VERSION} && \
       pyenv global ${version} && pip install pipenv; \
     done && \
     pyenv global ${PYTHON3_VERSION}
+
+USER root
+RUN rm -rf /tmp/devon_rex_work
+
+# Following instructions should be run by a non-root user
+USER $RUNNER_USER
+
+
 CMD pyenv versions

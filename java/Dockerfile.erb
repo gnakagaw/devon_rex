@@ -29,9 +29,7 @@ RUN curl -fsSLO --compressed "${MAVEN_BINARY_URL}" && \
     tar -xzf "${MAVEN_BINARY_FILE}" -C /usr/local/maven --strip-components 1 && \
     rm "${MAVEN_BINARY_FILE}"
 
-# Following instructions should be run by $RUNNER_USER
-USER $RUNNER_USER
-
 <%= ERB.new(File.read('base/Dockerfile.build-ruby.erb')).result %>
+<%= ERB.new(File.read('base/Dockerfile.cleanup.erb')).result %>
 
 CMD java -version && javac -version && mvn -v

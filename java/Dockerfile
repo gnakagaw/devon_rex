@@ -22,15 +22,16 @@ RUN /tmp/devon_rex_work/prepare
 
 # Install Java
 ENV JAVA_VERSION 12.0.1
-ENV PATH /usr/local/java/bin:$PATH
-ARG TAR_URL=https://download.java.net/java/GA/jdk${JAVA_VERSION}/69cfe15208a647278a19ef0990eea691/12/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz
-ARG SHA256_URL=https://download.java.net/java/GA/jdk${JAVA_VERSION}/69cfe15208a647278a19ef0990eea691/12/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz.sha256
-RUN curl -fsSLO --compressed $TAR_URL && \
-    curl -fsSL -o sha256.txt --compressed $SHA256_URL && \
-    echo "$(cat sha256.txt) *openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" | sha256sum --check --strict && \
+ENV PATH /usr/local/java/bin:${PATH}
+ARG JAVA_BINARY_URL=https://download.java.net/java/GA/jdk${JAVA_VERSION}/69cfe15208a647278a19ef0990eea691/12/GPL/openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz
+ARG JAVA_BINARY_FILE=openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz
+RUN curl -fsSLO --compressed "${JAVA_BINARY_URL}" && \
+    curl -fsSL  --compressed "${JAVA_BINARY_URL}.sha256" | \
+      xargs -I {} echo "{} *${JAVA_BINARY_FILE}" | \
+      sha256sum --check --strict && \
     mkdir -p /usr/local/java && \
-    tar -xzf "openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" -C /usr/local/java --strip-components=1 && \
-    rm -rf "openjdk-${JAVA_VERSION}_linux-x64_bin.tar.gz" sha256.txt
+    tar -xzf "${JAVA_BINARY_FILE}" -C /usr/local/java --strip-components=1 && \
+    rm "${JAVA_BINARY_FILE}"
 
 # Install Maven
 ENV MAVEN_VERSION 3.6.3

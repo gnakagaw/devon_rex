@@ -14,8 +14,8 @@ RUN curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/py
 ARG PYENV_SHIMS_BIN="$RUNNER_USER_HOME/.pyenv/shims"
 ARG PYENV_BIN="$RUNNER_USER_HOME/.pyenv/bin"
 ENV PATH $PYENV_SHIMS_BIN:$PYENV_BIN:$PATH
-ENV PYTHON2_VERSION 2.7.16
-ENV PYTHON3_VERSION 3.7.4
+ENV PYTHON2_VERSION <%= ENV.fetch('PYTHON2_VERSION') %>
+ENV PYTHON3_VERSION <%= ENV.fetch('PYTHON3_VERSION') %>
 
 # Install Python 2/3 as well as Pipenv for each runtime
 RUN pyenv install ${PYTHON2_VERSION} && \

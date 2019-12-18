@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Bump npm from 6.13.1 to 6.13.4 [#105](https://github.com/sider/devon_rex/pull/105)
 - Bump maven from 3.6.2 to 3.6.3 [#106](https://github.com/sider/devon_rex/pull/106)
 - Bump Java from 12.0.1 to 12.0.2 [#108](https://github.com/sider/devon_rex/pull/108)
+- Bump swift from 5.1.2 to 5.1.3 [#111](https://github.com/sider/devon_rex/pull/111)
 
 ## 2.11.0
 

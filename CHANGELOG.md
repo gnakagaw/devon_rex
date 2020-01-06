@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.11.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.12.0...HEAD)
+
+## 2.12.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.11.0...2.12.0)
 
 - Bump npm from 6.13.1 to 6.13.4 [#105](https://github.com/sider/devon_rex/pull/105)
 - Bump maven from 3.6.2 to 3.6.3 [#106](https://github.com/sider/devon_rex/pull/106)

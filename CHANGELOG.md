@@ -11,6 +11,10 @@ All notable changes to this project will be documented in this file.
 - Bump Java from 12.0.1 to 12.0.2 [#108](https://github.com/sider/devon_rex/pull/108)
 - Bump swift from 5.1.2 to 5.1.3 [#111](https://github.com/sider/devon_rex/pull/111)
 - Bump Bundler from 2.0.2 to 2.1.1 [#114](https://github.com/sider/devon_rex/pull/114)
+- Bump debian from buster-20191118 to buster-20191224 in /base [#119](https://github.com/sider/devon_rex/pull/119)
+- Bump debian from buster-20191118 to buster-20191224 in /java [#118](https://github.com/sider/devon_rex/pull/118)
+- Bump php from 7.4.0-buster to 7.4.1-buster in /php [#116](https://github.com/sider/devon_rex/pull/116)
+- Bump node from 12.13.1-buster to 12.14.0-buster in /npm [#115](https://github.com/sider/devon_rex/pull/115)
 
 ## 2.11.0
 

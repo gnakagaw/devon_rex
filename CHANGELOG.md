@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 [Full diff](https://github.com/sider/devon_rex/compare/2.12.0...HEAD)
 
 - Bump ruby-build from v20191124 to v20200115 [#126](https://github.com/sider/devon_rex/pull/126)
+- Bump Bundler from 2.1.1 to 2.1.4 [#127](https://github.com/sider/devon_rex/pull/127)
 
 ## 2.12.0
 

@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Bump Bundler from 2.1.1 to 2.1.4 [#127](https://github.com/sider/devon_rex/pull/127)
 - Bump npm from 6.13.4 to 6.13.6 [#128](https://github.com/sider/devon_rex/pull/128)
 - Bump node from 12.14.0-buster to 12.14.1-buster [#123](https://github.com/sider/devon_rex/pull/123)
+- Bump golang from 1.13.5-buster to 1.13.6-buster [#124](https://github.com/sider/devon_rex/pull/124)
 
 ## 2.12.0
 

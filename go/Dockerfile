@@ -2,7 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.erb INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM golang:1.13.6-buster
+FROM golang:1.13.7-buster
 
 ENV GLOBAL_RUBY_VERSION 2.6.5
 ENV BUNDLER1_VERSION 1.17.3

@@ -2,6 +2,9 @@
 
 Docker images for [Sider Runners](https://github.com/sider/runners).
 
+[![Build and publish](https://github.com/sider/devon_rex/workflows/Build%20and%20publish/badge.svg?branch=master)](https://github.com/sider/devon_rex/actions?query=workflow%3A%22Build+and+publish%22)
+[![Release](https://github.com/sider/devon_rex/workflows/Release/badge.svg?branch=master)](https://github.com/sider/devon_rex/actions?query=workflow%3ARelease)
+
 This repository's release tags indicate the Docker image tag, and all Docker images have the same tag.
 
 * [devon_rex_base](https://hub.docker.com/r/sider/devon_rex_base)

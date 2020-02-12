@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.13.0...HEAD)
 
+- Add .NET Core SDK image [#136](https://github.com/sider/devon_rex/pull/136)
+
 ## 2.13.0
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.12.0...2.13.0)

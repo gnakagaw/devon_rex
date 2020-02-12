@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.13.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.14.0...HEAD)
+
+## 2.14.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.13.0...2.14.0)
 
 - Add .NET Core SDK image [#136](https://github.com/sider/devon_rex/pull/136)
 - Bump swift from 5.1.3 to 5.1.4 [#134](https://github.com/sider/devon_rex/pull/134)

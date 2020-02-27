@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Bump node from 12.16.0-buster to 12.16.1-buster [#143](https://github.com/sider/devon_rex/pull/143)
 - Bump php from 7.4.2-buster to 7.4.3-buster in /php [#144](https://github.com/sider/devon_rex/pull/144)
 - Bump golang from 1.13.8-buster to 1.14.0-buster in /go [#145](https://github.com/sider/devon_rex/pull/145)
+- Bump debian from buster-20200130 to buster-20200224 [#146](https://github.com/sider/devon_rex/pull/146), [#147](https://github.com/sider/devon_rex/pull/147), [#148](https://github.com/sider/devon_rex/pull/148)
 
 ## 2.14.0
 

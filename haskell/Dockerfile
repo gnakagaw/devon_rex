@@ -3,12 +3,8 @@
 # PLEASE UPDATE Dockerfile.erb INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # NOTE: The base image is `debian:stretch` but we uses basically `debian:buster`.
-#       See https://github.com/freebroccolo/docker-haskell/issues/94
-#
-# NOTE: The version `8.6.5` is not latest and is including Cabal 2.4 (not latest too).
-#       Because ShellCheck does not work yet on the both latest versions.
-#       See https://github.com/koalaman/shellcheck/blob/de9ab4e6ef5262eeba6871a03ef3938a93b44395/ShellCheck.cabal#L40
-FROM haskell:8.6.5
+#       See https://github.com/haskell/docker-haskell/issues/8
+FROM haskell:8.8.3
 
 ENV GLOBAL_RUBY_VERSION 2.6.5
 ENV BUNDLER1_VERSION 1.17.3

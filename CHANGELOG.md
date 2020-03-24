@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.15.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.16.0...HEAD)
+
+## 2.16.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.15.0...2.16.0)
 
 - Bump ruby-build from 20200115 to 20200224 [#151](https://github.com/sider/devon_rex/pull/151)
 - Bump npm from 6.13.7 to 6.14.2 [#153](https://github.com/sider/devon_rex/pull/153)

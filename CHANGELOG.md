@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Bump haskell from 8.6.5 to 8.8.3 [#162](https://github.com/sider/devon_rex/pull/162)
 - Bump swift from 5.1.4 to 5.1.5 [#170](https://github.com/sider/devon_rex/pull/170)
 - Bump php from 7.4.3-buster to 7.4.4-buster [#172](https://github.com/sider/devon_rex/pull/172)
+- Bump golang from 1.14.0-buster to 1.14.1-buster [#173](https://github.com/sider/devon_rex/pull/173)
 
 ## 2.15.0
 

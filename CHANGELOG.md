@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.16.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.16.1...HEAD)
+
+## 2.16.1
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.16.0...2.16.1)
 
 - Bump Ruby from 2.6.5 to 2.6.6 [#179](https://github.com/sider/devon_rex/pull/179)
 

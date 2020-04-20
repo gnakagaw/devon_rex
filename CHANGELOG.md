@@ -7,7 +7,8 @@ All notable changes to this project will be documented in this file.
 [Full diff](https://github.com/sider/devon_rex/compare/2.16.1...HEAD)
 
 - Bump golang from 1.14.1-buster to 1.14.2-buster [#182](https://github.com/sider/devon_rex/pull/182)
--  Bump node from 12.16.1-buster to 12.16.2-buster [#183](https://github.com/sider/devon_rex/pull/183)
+- Bump node from 12.16.1-buster to 12.16.2-buster [#183](https://github.com/sider/devon_rex/pull/183)
+- Bump debian from buster-20200224 to buster-20200414 [#185](https://github.com/sider/devon_rex/pull/185) [#186](https://github.com/sider/devon_rex/pull/186) [#187](https://github.com/sider/devon_rex/pull/187)
 
 ## 2.16.1
 

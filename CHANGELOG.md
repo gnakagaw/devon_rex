@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 - Bump npm from 6.14.4 to 6.14.5 [#200](https://github.com/sider/devon_rex/pull/200)
 - Bump swift from 5.1.5 to 5.2.3 [#199](https://github.com/sider/devon_rex/pull/199)
+- Bump node from 12.16.2-buster to 12.16.3-buster [#203](https://github.com/sider/devon_rex/pull/203)
 
 ## 2.17.0
 

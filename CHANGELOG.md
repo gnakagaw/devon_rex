@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.17.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.18.0...HEAD)
+
+## 2.18.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.17.0...2.18.0)
 
 - Bump npm from 6.14.4 to 6.14.5 [#200](https://github.com/sider/devon_rex/pull/200)
 - Bump swift from 5.1.5 to 5.2.3 [#199](https://github.com/sider/devon_rex/pull/199)

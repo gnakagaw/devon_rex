@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file.
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.18.0...HEAD)
 
+- Bump haskell from 8.8.3 to 8.10.1 [#212](https://github.com/sider/devon_rex/pull/212)
+- Bump debian from buster-20200422 to buster-20200514
+  - [#208](https://github.com/sider/devon_rex/pull/208)
+  - [#209](https://github.com/sider/devon_rex/pull/209)
+- Bump golang from 1.14.2-buster to 1.14.3-buster [#210](https://github.com/sider/devon_rex/pull/210)
+- Bump php from 7.4.5-buster to 7.4.6-buster [#211](https://github.com/sider/devon_rex/pull/211)
+
 ## 2.18.0
 
 [Full diff](https://github.com/sider/devon_rex/compare/2.17.0...2.18.0)

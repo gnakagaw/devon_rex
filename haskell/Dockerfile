@@ -2,9 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.erb INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# NOTE: The base image is `debian:stretch` but we uses basically `debian:buster`.
-#       See https://github.com/haskell/docker-haskell/issues/8
-FROM haskell:8.8.3
+FROM haskell:8.10.1-buster
 
 ENV GLOBAL_RUBY_VERSION 2.7.1
 ENV BUNDLER1_VERSION 1.17.3

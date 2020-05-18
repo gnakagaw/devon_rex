@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.18.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.19.0...HEAD)
+
+## 2.19.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.18.0...2.19.0)
 
 - Bump haskell from 8.8.3 to 8.10.1 [#212](https://github.com/sider/devon_rex/pull/212)
 - Bump debian from buster-20200422 to buster-20200514

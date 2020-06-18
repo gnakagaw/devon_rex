@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.19.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.20.0...HEAD)
+
+## 2.20.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.19.0...2.20.0)
 
 - Bump ruby-build from 20200401 to 20200518 [#214](https://github.com/sider/devon_rex/pull/214)
 - Bump node from 12.16.3-buster to 12.18.0-buster [#215](https://github.com/sider/devon_rex/pull/215) [#217](https://github.com/sider/devon_rex/pull/217)

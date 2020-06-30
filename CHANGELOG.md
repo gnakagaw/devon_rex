@@ -8,6 +8,8 @@ All notable changes to this project will be documented in this file.
 
 - Bump node from 12.18.0-buster to 12.18.1-buster [#224](https://github.com/sider/devon_rex/pull/224)
 - Drop the support for ubuntu:xenial [#227](https://github.com/sider/devon_rex/pull/227)
+- Use the official Ruby Docker image [#228](https://github.com/sider/devon_rex/pull/228)
+- Use swift:5.2.4-focal as a base image for Swift [#228](https://github.com/sider/devon_rex/pull/228)
 
 ## 2.20.0
 

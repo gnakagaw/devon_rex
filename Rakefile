@@ -21,7 +21,13 @@ require 'aufgaben/release'
 Aufgaben::Release.new
 
 require 'aufgaben/bump/ruby'
-Aufgaben::Bump::Ruby.new
+Aufgaben::Bump::Ruby.new do |t|
+  t.files = %w[
+    .ruby-version
+    base/Dockerfile.prepare.erb
+  ]
+end
+
 
 namespace :dockerfile do
   desc 'Generate Dockerfile from a template'

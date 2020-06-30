@@ -13,19 +13,28 @@ ENV LC_ALL $LANG
 ENV RUNNER_USER analyzer_runner
 ENV RUNNER_GROUP nogroup
 ENV RUNNER_USER_HOME /home/${RUNNER_USER}
-ENV RUNNER_RUBY_HOME ${RUNNER_USER_HOME}/ruby
-ENV PATH ${RUNNER_USER_HOME}/bin:${RUNNER_RUBY_HOME}/bin:${PATH}
+ENV GEM_HOME ${RUNNER_USER_HOME}/ruby
+ENV PATH ${RUNNER_USER_HOME}/bin:${GEM_HOME}/bin:${PATH}
 ENV DEBIAN_FRONTEND noninteractive
 
 COPY base/bin/prepare /tmp/devon_rex_work/
 RUN /tmp/devon_rex_work/prepare
 
+COPY --from=ruby:2.7.1 /usr/local /usr/local/
+
 USER $RUNNER_USER
 
-COPY base/bin/build-ruby /tmp/devon_rex_work/
-RUN RUBY_BUILD_VERSION="20200518" /tmp/devon_rex_work/build-ruby
-COPY --chown=${RUNNER_USER}:${RUNNER_GROUP} base/etc/gemrc ${RUNNER_RUBY_HOME}/etc/
-RUN gem environment
+RUN gem update --system && \
+    # NOTE: Install bundler v1 as well as v2 because runner applications need them
+    #       in order to parse both versions of Gemfile.lock.
+    #       See https://bunndler.io/blog/2019/01/03/announcing-bundler-2.html
+    gem install bundler:"${BUNDLER1_VERSION}" && \
+    gem install bundler:"${BUNDLER2_VERSION}" && \
+    # Verify Bundler installation
+    test "$(bundle -v)" = "Bundler version ${BUNDLER2_VERSION}" || (echo 'Unexpected Bundler version!' ; exit 1) && \
+    gem info bundler && \
+    gem environment && \
+    ruby -v && gem -v && bundle -v
 
 USER root
 RUN rm -rf /tmp/devon_rex_work

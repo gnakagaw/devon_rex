@@ -9,6 +9,7 @@ on:
         required: true
       dry-run:
         description: Set `true` if you want to dry-run
+        required: false
 
 jobs:
   release:

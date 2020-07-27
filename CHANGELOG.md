@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Bump php from 7.4.7-buster to 7.4.8-buster [#233](https://github.com/sider/devon_rex/pull/233)
 - Bump debian from buster-20200607 to buster-20200720 [#237](https://github.com/sider/devon_rex/pull/237)
 - Bump openjdk from 14.0.1-buster to 14.0.2-buster [#241](https://github.com/sider/devon_rex/pull/241)
+- Bump golang from 1.14.4-buster to 1.14.6-buster [#244](https://github.com/sider/devon_rex/pull/244)
 
 ## 2.22.0
 

@@ -1,41 +1,17 @@
 name: Release
 
 on:
-  workflow_dispatch:
-    branches: [master]
-    inputs:
-      new-version:
-        description: Set a new version
-        required: true
-      dry-run:
-        description: Set `true` if you want to dry-run
-        required: false
+  push:
+    tags: ["**"]
 
 jobs:
-  release:
+  run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-      - run: bundle config set path vendor/bundle && bundle install
-      - run: |
-          git config user.name "${GITHUB_ACTOR}"
-          git config user.email "actions@github.com"
-      - run: bundle exec rake release"[${{ github.event.inputs.new-version }}]" DRY_RUN=true
-        if: ${{ github.event.inputs.dry-run == 'true' }}
-      - run: bundle exec rake release"[${{ github.event.inputs.new-version }}]"
-        if: ${{ github.event.inputs.dry-run == '' }}
-      - run: echo "::set-output name=tag::$(git describe --abbrev=0)"
-        id: set-tag
       - uses: softprops/action-gh-release@v1
-        if: ${{ github.event.inputs.dry-run == '' }}
         with:
           body: |
-            See the [changelog](https://github.com/${{ github.repository }}/blob/${{ steps.set-tag.outputs.tag }}/CHANGELOG.md) for more details.
-          tag_name: ${{ steps.set-tag.outputs.tag }}
+            See the [changelog](https://github.com/${{ github.repository }}/blob/${{ github.sha }}/CHANGELOG.md) for more details.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -25,9 +25,9 @@ jobs:
       - run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "actions@github.com"
-      - run: bundle exec rake release[${{ github.event.inputs.new-version }}] DRY_RUN=true
+      - run: bundle exec rake release"[${{ github.event.inputs.new-version }}]" DRY_RUN=true
         if: ${{ github.event.inputs.dry-run == 'true' }}
-      - run: bundle exec rake release[${{ github.event.inputs.new-version }}]
+      - run: bundle exec rake release"[${{ github.event.inputs.new-version }}]"
         if: ${{ github.event.inputs.dry-run == '' }}
       - run: echo "::set-output name=tag::$(git describe --abbrev=0)"
         id: set-tag

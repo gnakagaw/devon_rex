@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.25.0...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.26.0...HEAD)
+
+## 2.26.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.25.0...2.26.0)
 
 - Let $RUNNER_USER run update-ca-certificates(8) and apt-get(8) [#272](https://github.com/sider/devon_rex/pull/272)
 - Allow $RUNNER_USER to add certificate files [#284](https://github.com/sider/devon_rex/pull/284)

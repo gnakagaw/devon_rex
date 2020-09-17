@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 
 - Let $RUNNER_USER run update-ca-certificates(8) and apt-get(8) [#272](https://github.com/sider/devon_rex/pull/272)
 - Allow $RUNNER_USER to add certificate files [#284](https://github.com/sider/devon_rex/pull/284)
+- Bump haskell from 8.10.1-buster to 8.10.2-buster [#268](https://github.com/sider/devon_rex/pull/268)
+- Bump php from 7.4.9-buster to 7.4.10-buster [#270](https://github.com/sider/devon_rex/pull/270)
+- Bump golang from 1.15.0-buster to 1.15.2-buster [#281](https://github.com/sider/devon_rex/pull/281)
+- Bump debian from buster-20200803 to buster-20200908 [#286](https://github.com/sider/devon_rex/pull/286)
 
 ## 2.25.0
 

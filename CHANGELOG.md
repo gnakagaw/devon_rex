@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-[Full diff](https://github.com/sider/devon_rex/compare/2.27.1...HEAD)
+[Full diff](https://github.com/sider/devon_rex/compare/2.28.0...HEAD)
+
+## 2.28.0
+
+[Full diff](https://github.com/sider/devon_rex/compare/2.27.1...2.28.0)
 
 - Bump gradle from 6.7 to 6.7.1 [#318](https://github.com/sider/devon_rex/pull/318)
 - Bump Pipenv from 2020.8.13 to 2020.11.15 [#321](https://github.com/sider/devon_rex/pull/321)

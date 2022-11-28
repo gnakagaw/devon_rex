@@ -1,13 +1,7 @@
-GIT
-  remote: https://github.com/ybiquitous/aufgaben
-  revision: 3a17f6a7a722e37f60a393246edc44ef78373588
-  tag: 0.6.0
-  specs:
-    aufgaben (0.6.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
+    aufgaben (0.10.0)
     dotenv (2.7.6)
     rake (13.0.3)
 
@@ -15,7 +9,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aufgaben!
+  aufgaben
   dotenv
   rake
 
